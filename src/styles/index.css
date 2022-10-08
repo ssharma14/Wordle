@@ -27,4 +27,25 @@ code {
     border: 2px solid #d3d6da;
     text-transform: uppercase;
     color: #000;
+    margin-right:5px;
+}
+
+.row{
+  margin-bottom: 5px;
+}
+
+.board{
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 0;
+  padding: 0 20px;
+}
+
+.game{
+  margin-top: 50px;
+}
+
+h1{
+  text-align: center;
+  padding: 20px;
 }
