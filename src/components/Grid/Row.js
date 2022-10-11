@@ -8,7 +8,7 @@ function Row () {
     return (
         <div className='row' >
             {emptyCells.map((_, i) => (
-                <Cell key={i} letterpos={i}/>
+                <Cell key={i} letterpos={i} letter={letter}/>
             ))}
         </div>
     )
