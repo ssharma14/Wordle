@@ -7,8 +7,7 @@ function Keyboard() {
   const keys2 = ["A", "S", "D", "F", "G", "H", "J", "K", "L"];
   const keys3 = ["Z", "X", "C", "V", "B", "N", "M"];
 
-  const { onSelectLetter } =
-    useContext(AppContext);
+  const { onSelectLetter } = useContext(AppContext);
 
 
   const handleKeyboard = useCallback(
@@ -39,7 +38,7 @@ function Keyboard() {
   }, [handleKeyboard]);
 
   return (
-    <div key="" className="keyboard" onKeyDown={handleKeyboard}>
+    <div id="keyboard" onKeyDown={handleKeyboard}>
       <div className="line1">
         {keys1.map((key) => {
           return <Key keyVal={key} />;
