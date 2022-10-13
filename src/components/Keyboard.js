@@ -7,27 +7,34 @@ function Keyboard() {
   const keys2 = ["A", "S", "D", "F", "G", "H", "J", "K", "L"];
   const keys3 = ["Z", "X", "C", "V", "B", "N", "M"];
 
-  const { onSelectLetter } = useContext(AppContext);
+  const { onSelectLetter, onEnter, onDelete, currGuess} = useContext(AppContext);
 
 
   const handleKeyboard = useCallback(
     (event) => {
-      keys1.forEach((key) => {
-        if (event.key.toLowerCase() === key.toLowerCase()) {
-          onSelectLetter(key);
-        }
-      });
-      keys2.forEach((key) => {
-        if (event.key.toLowerCase() === key.toLowerCase()) {
-          onSelectLetter(key);
-        }
-      });
-      keys3.forEach((key) => {
-        if (event.key.toLowerCase() === key.toLowerCase()) {
-          onSelectLetter(key);
-        }
-      });
+      if (event.key === "Enter") {
+        onEnter();
+      } else if (event.key === "Backspace") {
+        onDelete();
+      } else {
+        keys1.forEach((key) => {
+          if (event.key.toLowerCase() === key.toLowerCase()) {
+            onSelectLetter(key);
+          }
+        });
+        keys2.forEach((key) => {
+          if (event.key.toLowerCase() === key.toLowerCase()) {
+            onSelectLetter(key);
+          }
+        });
+        keys3.forEach((key) => {
+          if (event.key.toLowerCase() === key.toLowerCase()) {
+            onSelectLetter(key);
+          }
+        });
+      }
     },
+    [currGuess]
   );
   useEffect(() => {
     document.addEventListener("keydown", handleKeyboard);

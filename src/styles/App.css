@@ -15,21 +15,34 @@ code {
 }
 
 .cell{
-    width: 62px;
-    height: 62px;
+    width: 3.3rem;
+    height: 3.3rem;
     line-height: 32px;
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    font-size: 2rem;
+    font-size: 24px;
     line-height: 1;
     font-weight: bold;
     vertical-align: middle;
     box-sizing: border-box;
-    border: 2px solid #d3d6da;
+    border: 1px solid #9fa0a2;
     text-transform: uppercase;
     color: #fff;
     margin-right:5px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+}
+
+.cell-close{
+  background: #b49f39;
+}
+
+.cell-wrong{
+  background: #3a3a3c;
+}
+
+.cell-correct{
+  background: #538d4e;
 }
 
 .row{
@@ -44,18 +57,19 @@ code {
 }
 
 .game{
-  margin-top: 50px;
+  margin-top: 20px;
 }
 
 h1{
   text-align: center;
-  padding: 20px;
+  padding: 10px 20px;
+  margin: 0 15px;
 }
 
 .keyboard {
   width: 700px;
   height: 300px;
-  margin: 30px auto 60px;
+  margin: 15px auto 60px;
 }
 
 .line1 {
@@ -64,28 +78,28 @@ h1{
   flex-direction: row;
   display: flex;
   justify-content: center;
-  margin: 5px;
+  margin: 0 5px 5px;
 }
 .line2 {
   flex: 33%;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin: 5px;
+  margin: 0 5px 5px;
 }
 .line3 {
   flex: 33%;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin: 5px;
+  margin: 0 5px 5px;
 }
 
 .key {
-  width: 40px;
-  height: 60px;
-  margin: 5px;
-  border-radius: 4px;
+  width: 2.5rem;
+  height: 3rem;
+  margin: 0 5px 5px;
+  border-radius: 3px;
   display: grid;
   place-items: center;
   font-size: 13px;
