@@ -1,21 +1,23 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { AppContext } from "../App";
 
 const Cell = ({ status, letterpos, rowpos }) => {
-  const {board, currGuess, correctWord} = useContext(AppContext);
+  const {board, currGuess, correctWord, setLetterStatus} = useContext(AppContext);
   const letter = board[rowpos][letterpos];
   const correct = correctWord.toUpperCase()[letterpos] === letter;
 
   if(letter === "" ){
       status = -1;
-  } else if(letter !== "" && !correct && !correctWord.includes(letter)){
+  } else if(letter !== "" && !correct && !correctWord.toUpperCase().includes(letter)){
     status = 0;
   }
-  else if(letter !== "" && !correct && correctWord.includes(letter)){
+  else if(letter !== "" && !correct && correctWord.toUpperCase().includes(letter)){
     status = 1;
   } else if(letter !== "" && correct){
       status = 2
   }
+
+  
 
   const getClass = () => {
     let c = 'cell cell-'
@@ -36,9 +38,15 @@ const Cell = ({ status, letterpos, rowpos }) => {
       return c
   }
 
+  useEffect(() => {
+    if (status === 0 || status === 2 || status === 1) {
+      setLetterStatus((prev) => [...prev, [letter, status]]);
+    }
+  }, [currGuess.guess]);
+
   return (
     <div className={ getClass()} rowpos={rowpos} letterpos={letterpos}>{letter}</div>
-  )
+  );
 }
 
 export default Cell

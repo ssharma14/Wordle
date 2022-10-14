@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { AppContext } from "../App";
 
-function Key({ keyVal, bigKey, disabled }) {
-  const { onSelectLetter, onEnter, onDelete} = useContext(AppContext);
+function Key({ keyVal, bigKey, status}) {
+  const { onSelectLetter, onEnter, onDelete, letterStatus} = useContext(AppContext);
 
   const selectLetter = () => {
 
@@ -15,8 +15,27 @@ function Key({ keyVal, bigKey, disabled }) {
       onSelectLetter(keyVal);
     }
   };
+
+  const getClass = () => {
+    let letterStatusValue = 'key';
+    for (var i = 0; i <letterStatus.length; i++) {
+      if(letterStatus[i][0] === keyVal){
+        
+        status = letterStatus[i][1];
+        if(status === 1){
+          letterStatusValue += " close";
+        } else if(status === 2){
+          letterStatusValue += " correct";
+        } else{
+          letterStatusValue += " wrong";
+        }
+      }
+    }
+    return letterStatusValue;
+  }
+  
   return (
-    <div key={keyVal} className="key" id={bigKey ? "big" : disabled && "disabled"} onClick={selectLetter}>
+    <div key={keyVal} className={ getClass()} id={bigKey ? "big" : null} onClick={selectLetter}>
       {keyVal}
     </div>
   );

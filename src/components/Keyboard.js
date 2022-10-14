@@ -9,7 +9,6 @@ function Keyboard() {
 
   const { onSelectLetter, onEnter, onDelete, currGuess} = useContext(AppContext);
 
-
   const handleKeyboard = useCallback(
     (event) => {
       if (event.key === "Enter") {
@@ -48,18 +47,18 @@ function Keyboard() {
     <div id="keyboard" onKeyDown={handleKeyboard}>
       <div className="line1">
         {keys1.map((key) => {
-          return <Key keyVal={key} />;
+          return <Key keyVal={key}/>;
         })}
       </div>
       <div className="line2">
         {keys2.map((key) => {
-          return <Key keyVal={key} />;
+          return <Key keyVal={key}/>;
         })}
       </div>
       <div className="line3">
         <Key keyVal={"ENTER"} bigKey />
         {keys3.map((key) => {
-          return <Key keyVal={key} />;
+          return <Key keyVal={key}/>;
         })}
         <Key keyVal={"DELETE"} bigKey />
       </div>
