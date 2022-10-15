@@ -1,6 +1,6 @@
 import Board from './components/Board';
 import Keyboard from './components/Keyboard';
-import GameResult from "./components/GameResult";
+import { GameResult, closeAlert } from "./components/GameResult";
 import { initialBoard, generateWordSet } from "./components/Words";
 import React , { useState, createContext, useEffect } from "react";
 export const AppContext = createContext();
@@ -16,9 +16,12 @@ function App(){
         guessedWord: false,
     });
 
-    useEffect(()=>{
-        generateWordSet()
-    }, []) 
+    useEffect(() => {
+        generateWordSet().then((words) => {
+          setWordSet(words.wordSet);
+          setCorrectWord(words.todaysWord);
+        });
+      }, []); 
     
     const onEnter = () =>{
         //Checking if word enetered is correct dictonary word
@@ -30,14 +33,13 @@ function App(){
         for (let i = 0; i < 5; i++) {
             currWord += board[currGuess.guess][i];
         }
-        console.log(correctWord);
         if (wordSet.has(currWord.toLowerCase())) {
             setCurrGuess({ guess: currGuess.guess + 1, letterpos: 0 });
         } else {
             alert("Not in word list");
         }
-
-        if (currWord === correctWord) {
+        console.log(correctWord);
+        if (currWord.toLowerCase() === correctWord) {
             setGameResult({ gameOver: true, guessedWord: true });
             return;
         }
@@ -63,15 +65,21 @@ function App(){
         setCurrGuess({...currGuess, letterpos: currGuess.letterpos + 1});
     }
 
+    const resetGame = () => {
+        const newBoard = [...board];
+        newBoard[currGuess.guess][currGuess.letterpos] = "";
+        setBoard(newBoard);
+    }
+
     return(
-        <div className='wordle-game'>
+        <div className='wordle-game' onClick={() => closeAlert()}>
             <h1>Wordle</h1>
             <hr />
             <AppContext.Provider value={{ onSelectLetter, board, setBoard, currGuess, setCurrGuess, onDelete, onEnter, correctWord, letterStatus, setLetterStatus, gameResult, setGameResult }} >
                 <div className='game'>
                     <Board />
                 </div>
-                <div className="keyboard"><Keyboard /></div>
+                <div className={"keyboard" + (gameResult.gameOver ? ' keyboardDisabled' : null)}><Keyboard /></div>
                 {gameResult.gameOver ? <GameResult /> : null }
             </AppContext.Provider>
         </div>

@@ -1,21 +1,31 @@
 import React, { useContext } from "react";
 import { AppContext } from "../App";
 
-function GameResult() {
+export const GameResult = () => {
   const { currGuess, gameResult, correctWord} = useContext(AppContext);
   return (
-    <div className="gameResult">
-      <h3>
-        {gameResult.guessedWord
-          ? "You Correctly Guessed the Wordle"
-          : "You Failed to Guess the Word"}
-      </h3>
-      <h1>Correct Word: {correctWord}</h1>
-      {gameResult.guessedWord && (
-        <h3>You guessed in {currGuess.guess} attempts</h3>
-      )}
+    <div className="gameResult" id="gameResult">
+        <div className="gameContent">
+          <div className="closeGame" onClick={() => closeAlert()}>X</div>
+          <div className="content">
+              <h3>
+                {gameResult.guessedWord
+                  ? "You Correctly Guessed the Wordle"
+                  : "You Failed to Guess the Word"}
+              </h3>
+              <h5>Correct Word: {correctWord}</h5>
+              {gameResult.guessedWord && (
+                <p>You guessed in {currGuess.guess} attempts</p>
+              )}
+          </div>
+        </div>
     </div>
   );
 }
 
-export default GameResult;
+export const closeAlert = () => {
+  let element = document.getElementById("gameResult")
+  if (!element) return
+  element.style.opacity = '0'
+  element.style.visibility = 'hidden'
+}

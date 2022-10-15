@@ -9,11 +9,13 @@ export const initialBoard = [
     ["", "", "", "", ""],
 ];
 
-export const generateWordSet = () => {
+export const generateWordSet  = async () => {
     let wordSet;
     let todaysWord;
-    todaysWord = WORDS[Math.floor(Math.random() * WORDS.length)];
-    //wordSet = new Set(WORDS);
-    console.log(todaysWord);
+    await fetch({WORDS}).then((response) => response.text())
+    .then(() => {
+        todaysWord = WORDS[Math.floor(Math.random() * WORDS.length)];
+        wordSet = new Set(WORDS);
+    });
     return { wordSet, todaysWord };
 };
