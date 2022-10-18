@@ -1,9 +1,9 @@
 import React, { useContext, useEffect } from 'react';
-import { AppContext } from "../App";
+import { AppContext } from "./Game";
 
-const Cell = ({ status, letterpos, rowpos }) => {
+const Cell = ({ status, letterpos, rowpos, letter }) => {
   const {board, currGuess, correctWord, setLetterStatus} = useContext(AppContext);
-  const letter = board[rowpos][letterpos];
+  letter = board[rowpos][letterpos];
   const correct = correctWord.toUpperCase()[letterpos] === letter;
 
   if(letter === "" ){
@@ -38,7 +38,7 @@ const Cell = ({ status, letterpos, rowpos }) => {
       return c
   }
 
-  useEffect(() => {
+  useEffect((status, letter) => {
     if (status === 0 || status === 2 || status === 1) {
       setLetterStatus((prev) => [...prev, [letter, status]]);
     }

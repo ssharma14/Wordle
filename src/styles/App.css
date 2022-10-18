@@ -162,3 +162,17 @@ h1{
   text-align: right;
   cursor: pointer;
 }
+
+.bigbutton{
+  background-color: #fff;
+  padding: 10px 30px;
+  color: #000;
+  text-transform: capitalize;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.bigbutton:hover{
+  color: #fff;
+  background-color: #538d4e;
+}

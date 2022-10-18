@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
-import { AppContext } from "../App";
+import { AppContext } from "./Game";
 
-export const GameResult = () => {
+export const GameResult = (props) => {
   const { currGuess, gameResult, correctWord} = useContext(AppContext);
   return (
     <div className="gameResult" id="gameResult">
@@ -17,6 +17,7 @@ export const GameResult = () => {
               {gameResult.guessedWord && (
                 <p>You guessed in {currGuess.guess} attempts</p>
               )}
+              <button className='bigbutton' onClick={props.onClick}>Play again</button>
           </div>
         </div>
     </div>

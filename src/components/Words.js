@@ -1,14 +1,5 @@
 import {WORDS} from "./wordle-bank";
 
-export const initialBoard = [
-    ["", "", "", "", ""],
-    ["", "", "", "", ""],
-    ["", "", "", "", ""],
-    ["", "", "", "", ""],
-    ["", "", "", "", ""],
-    ["", "", "", "", ""],
-];
-
 export const generateWordSet  = async () => {
     let wordSet;
     let todaysWord;
