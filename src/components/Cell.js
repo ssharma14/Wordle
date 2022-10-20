@@ -1,17 +1,18 @@
 import React, { useContext, useEffect } from 'react';
 import { AppContext } from "./Game";
+import { decodeSolution } from "../lib/encryption";
 
 const Cell = ({ status, letterpos, rowpos, letter }) => {
   const {board, currGuess, correctWord, setLetterStatus} = useContext(AppContext);
   letter = board[rowpos][letterpos];
-  const correct = correctWord.toUpperCase()[letterpos] === letter;
+  const correct = decodeSolution(correctWord).toUpperCase()[letterpos] === letter;
 
   if(letter === "" ){
       status = -1;
-  } else if(letter !== "" && !correct && !correctWord.toUpperCase().includes(letter)){
+  } else if(letter !== "" && !correct && !decodeSolution(correctWord).toUpperCase().includes(letter)){
     status = 0;
   }
-  else if(letter !== "" && !correct && correctWord.toUpperCase().includes(letter)){
+  else if(letter !== "" && !correct && decodeSolution(correctWord).toUpperCase().includes(letter)){
     status = 1;
   } else if(letter !== "" && correct){
       status = 2

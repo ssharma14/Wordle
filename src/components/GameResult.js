@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { AppContext } from "./Game";
+import { decodeSolution } from "../lib/encryption";
 
 export const GameResult = (props) => {
   const { currGuess, gameResult, correctWord} = useContext(AppContext);
@@ -13,7 +14,7 @@ export const GameResult = (props) => {
                   ? "You Correctly Guessed the Wordle"
                   : "You Failed to Guess the Word"}
               </h3>
-              <h5>Correct Word: {correctWord}</h5>
+              <h5>Correct Word: {decodeSolution(correctWord)}</h5>
               {gameResult.guessedWord && (
                 <p>You guessed in {currGuess.guess} attempts</p>
               )}

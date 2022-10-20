@@ -2,6 +2,7 @@ import Board, {initialBoard} from './Board';
 import Keyboard from './Keyboard';
 import { GameResult, closeAlert } from "./GameResult";
 import { generateWordSet } from "./Words";
+import { decodeSolution } from "../lib/encryption";
 import React , { useState, createContext, useEffect } from "react";
 export const AppContext = createContext();
 
@@ -40,8 +41,8 @@ const Game = (props) => {
         } else {
             alert("Not in word list");
         }
-        console.log(correctWord);
-        if (currWord.toLowerCase() === correctWord) {
+        
+        if (currWord.toLowerCase() === decodeSolution(correctWord)) {
             setGameResult({ gameOver: true, guessedWord: true });
             return;
         }
